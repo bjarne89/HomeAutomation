@@ -10,19 +10,21 @@
 #include <string.h>
 
 #define COL1 0
-#define COL2 3
+#define COL2 3 //Rx
 #define COL3 12
 #define COL4 2
 #define COL5 4
 #define LATCHPIN 5
+//CLK = pin 14
+//DATA = pin 13
 
 blinkTask(void *pvParameters)
 {
-    uint16_t send1 = 0b1110000000000111;
-    uint16_t send2 = 0b0000111000111000;
+    uint16_t send1 = 0b1110000000000000;
+    uint16_t send2 = 0b0000111000000000;
     uint16_t send3 = 0b0000000111000000;
-    uint16_t send4 = 0b0000111000111000;
-    uint16_t send5 = 0b1110000000000111;
+    uint16_t send4 = 0b0000000000111000;
+    uint16_t send5 = 0b0000000000000111;
     uint16_t test = 100;
 
     while(1) {
@@ -92,7 +94,7 @@ void user_init(void)
     gpio_write(COL3, 0);
     gpio_write(COL4, 0);
     gpio_write(COL5, 0);
-    gpio_write(LATCHPIN, 0);
+    gpio_write(LATCHPIN, 1);
 
     uart_set_baud(0, 115200);
     printf("SDK version:%s\n", sdk_system_get_sdk_version());
